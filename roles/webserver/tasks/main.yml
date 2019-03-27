@@ -1,0 +1,17 @@
+---
+# tasks file for webserver
+- name: 'Install webserver pakage'
+  yum:
+    name: 'httpd'
+    state: present
+
+- name: 'Create index.html'
+  template:
+    src: "{{ role_path }}/templates/index.html"
+    dest: '/var/www/html/index.html'
+
+- name: 'Start and enable httpd service'
+  service:
+    name: 'httpd'
+    enabled: yes
+    state: started
